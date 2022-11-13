@@ -1,29 +1,29 @@
-"use client";
+'use client';
 
-import {useEffect, useState} from "react";
-import {Entries, EntriesList} from "./IEntries";
+import { useCallback, useEffect, useState } from 'react';
+import { Entries, EntriesList } from '../utils/Entries';
 
-export default function HomePage({data} : {data: Entries | null}) {
-    const [filteredData, setFilteredData] = useState<EntriesList[]>([]);
+export default function HomePage({ data }: { data: Entries }) {
+  const [filteredData, setFilteredData] = useState<EntriesList[]>([]);
 
-    const filterData = () => {
-        if (data) {
-            setFilteredData(data.entries.slice(0, 10));
-        }
+  const filterData = useCallback(() => {
+    if (data) {
+      setFilteredData(data.entries.slice(0, 10));
     }
+  }, [data]);
 
-    useEffect(() => {
-        filterData();
-    }, [data]);
+  useEffect(() => {
+    filterData();
+  }, [filterData]);
 
-    return (
-            <div>
-                <h1>Isi Data dari API</h1>
-                <ul>
-                    {filteredData.map(data => (
-                            <li>{data.API}</li>
-                    ))}
-                </ul>
-            </div>
-    );
-};
+  return (
+    <div>
+      <h1>Isi Data dari API</h1>
+      <ul>
+        {filteredData.map((data) => (
+          <li key={data.API}>{data.API}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
