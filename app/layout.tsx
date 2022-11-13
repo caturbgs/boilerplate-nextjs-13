@@ -11,8 +11,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* Temporary fix Hydration error. 'TypeError: Cannot read properties of null (reading 'parentNode')' */}
-      <head />
       <body>
         <LayoutHead />
         <div className="lg:container lg:max-w-screen-xl px-4 mx-auto">{children}</div>
