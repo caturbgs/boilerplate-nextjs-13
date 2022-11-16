@@ -1,8 +1,3 @@
-export interface Entries {
-  count: number;
-  entries: EntriesList[];
-}
-
 export interface EntriesList {
   API: string;
   Description: string;
