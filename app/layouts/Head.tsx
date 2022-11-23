@@ -1,6 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function LayoutHead() {
+  const pathname = usePathname();
+
   const menuHeader = [
     {
       name: 'Home',
@@ -24,7 +29,9 @@ export default function LayoutHead() {
             return (
               <Link
                 href={menu.route}
-                className="first:ml-0 ml-7 text-2xl font-semibold text-gray-600 hover:text-black"
+                className={`first:ml-0 ml-7 text-2xl font-semibold ${
+                  pathname == menu.route "text-black"k' "text-gray-600"0'
+                } hover:text-black`}
                 key={menu.route}>
                 {menu.name}
               </Link>
