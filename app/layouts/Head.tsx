@@ -30,7 +30,7 @@ export default function LayoutHead() {
               <Link
                 href={menu.route}
                 className={`first:ml-0 ml-7 text-2xl font-semibold ${
-                  pathname == menu.route "text-black"k' "text-gray-600"0'
+                  pathname == menu.route ? 'text-black' : 'text-gray-600'
                 } hover:text-black`}
                 key={menu.route}>
                 {menu.name}
