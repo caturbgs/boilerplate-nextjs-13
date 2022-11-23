@@ -1,5 +1,5 @@
 import { Post } from '@types';
-import { getPosts } from '@utils/posts';
+import { getPosts } from '@utils/fetch/posts';
 import HomePage from './HomePage';
 
 async function getData(): Promise<Post[]> {
