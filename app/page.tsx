@@ -1,10 +1,14 @@
+import { PrismaClient } from '@prisma/client';
 import { Post } from '@types';
-import { getPosts } from '@utils/fetch/posts';
 import HomePage from './HomePage';
+
+const prisma = new PrismaClient();
+
+export const revalidate = 90; // revalidate every two minutes
 
 async function getData(): Promise<Post[]> {
   // Example after moved on utils as helper functions.
-  const data = await getPosts();
+  const data = await prisma.post.findMany();
   return data;
 }
 
