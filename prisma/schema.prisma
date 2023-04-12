@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,21 +7,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Model
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
+model comment {
+  id        String   @id @default(uuid())
   body      String
-  comments  Comment[]
+  postId    String
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @default(now()) @db.Timestamp(6)
+  post      post     @relation(fields: [postId], references: [id], map: "Comment_postId_fkey")
+
+  @@index([postId], map: "Comment_postId_fkey")
 }
 
-model Comment {
-  id        Int      @id @default(autoincrement())
+model post {
+  id        String    @id @default(uuid())
+  title     String    @db.VarChar(255)
   body      String
-  postId    Int
-  posts     Post     @relation(fields: [postId], references: [id])
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  updatedAt DateTime @default(now()) @db.Timestamp(6)
+  createdAt DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt DateTime  @default(now()) @db.Timestamp(6)
+  comment   comment[]
+  user      user      @relation(fields: [userId], references: [id], map: "Post_userId_fkey")
+  userId    String
+}
+
+model user {
+  id        String    @id @default(uuid())
+  name      String    @db.VarChar(255)
+  email     String    @db.VarChar(255)
+  createdAt DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt DateTime  @default(now()) @db.Timestamp(6)
+  post      post[]
 }
