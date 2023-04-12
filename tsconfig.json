@@ -18,10 +18,18 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@utils/*": ["utils/*"],
-      "@types": ["types/index.ts"],
-      "@pages/*": ["app/*/page"],
-      "@config/*": ["config/*"]
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@types": [
+        "types/index.ts"
+      ],
+      "@pages/*": [
+        "app/*/page"
+      ],
+      "@config/*": [
+        "config/*"
+      ]
     },
     "jsx": "preserve",
     "incremental": true,
@@ -35,8 +43,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
+    ".next/types/**/*.ts",
+    "C:\\Users\\catur\\code\\boilerplate-nextjs-13\\.next/types/**/*.ts"
+, "app/posts/route.bak", "app/posts/[id]/route.bak", "app/posts/[id]/route.bak", "app/posts/route.bak"  ],
   "exclude": [
     "node_modules"
   ]
