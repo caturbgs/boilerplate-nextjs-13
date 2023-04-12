@@ -19,17 +19,21 @@ export default function LayoutHead() {
       name: 'Experience',
       route: '/experience',
     },
+    {
+      name: 'Contact Us',
+      route: '/contact-us',
+    },
   ];
 
   return (
     <header>
-      <div className="flex flex-1 items-center justify-between lg:container lg:max-w-screen-lg h-[80px] px-4 mx-auto">
+      <div className="mx-auto flex h-[80px] flex-1 items-center justify-between px-4 lg:container lg:max-w-screen-lg">
         <div className="flex">
           {menuHeader.map((menu) => {
             return (
               <Link
                 href={menu.route}
-                className={`first:ml-0 ml-7 text-2xl font-semibold ${
+                className={`ml-7 text-2xl font-semibold first:ml-0 ${
                   pathname == menu.route ? 'text-black' : 'text-gray-600'
                 } hover:text-black`}
                 key={menu.route}>
@@ -40,7 +44,7 @@ export default function LayoutHead() {
         </div>
         <div>
           <Link href="/contact-us">
-            <button className="bg-blue-600 hover:bg-white font-medium text-white hover:text-blue-600 border border-solid border-blue-600 transition ease-in-out duration-200 rounded-md px-4 py-1">
+            <button className="rounded-md border border-solid border-blue-600 bg-blue-600 px-4 py-1 font-medium text-white transition duration-200 ease-in-out hover:bg-white hover:text-blue-600">
               Contact Us!
             </button>
           </Link>
