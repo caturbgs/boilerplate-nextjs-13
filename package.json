@@ -17,14 +17,15 @@
     "lint:fix": "prettier --write --list-different \"**/*.{js,ts,tsx}\"  && yarn lint:ts --fix"
   },
   "dependencies": {
-    "@prisma/client": "^4.8.1",
+    "@prisma/client": "^4.12.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
     "date-fns": "^2.29.3",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.2",
-    "next": "^13.2.1",
+    "next": "13.3.1-canary.5",
+    "prettier-plugin-tailwindcss": "^0.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "server-only": "^0.0.1",
@@ -35,7 +36,7 @@
     "client-only": "^0.0.1",
     "postcss": "^8.4.19",
     "prettier": "^2.7.1",
-    "prisma": "^4.8.1",
+    "prisma": "^4.12.0",
     "tailwindcss": "^3.2.4"
   }
 }

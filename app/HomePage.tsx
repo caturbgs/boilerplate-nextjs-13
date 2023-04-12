@@ -1,6 +1,8 @@
 'use client';
 
 import { Post } from '@types';
+import { format } from 'date-fns';
+import { id } from 'date-fns/locale';
 import { useRouter } from 'next/navigation';
 
 export default function HomePage({ data }: { data: Post[] }) {
@@ -8,7 +10,7 @@ export default function HomePage({ data }: { data: Post[] }) {
 
   const handleCreate = async () => {
     const lastId = data[data.length - 1].id + 1;
-    const res = await fetch(`/api/posts`, {
+    const res = await fetch(`/posts`, {
       method: 'POST',
       body: JSON.stringify({
         title: `New Title ${lastId}`,
@@ -17,13 +19,14 @@ export default function HomePage({ data }: { data: Post[] }) {
           // create: []
           create: [
             {
-              body: 'tes comment 1'
-            }
-          ]
-        }
+              body: 'tes comment 1',
+            },
+          ],
+        },
       }),
       headers: {
-        'Content-type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
       },
     });
 
@@ -31,16 +34,17 @@ export default function HomePage({ data }: { data: Post[] }) {
 
     router.refresh();
   };
-
-  const handleUpdate = async (id: number) => {
-    const res = await fetch(`/api/posts/${id}`, {
+``
+  const handleUpdate = async (id: string) => {
+    const res = await fetch(`/posts/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
         title: `Update Title ${id}`,
         body: `Update Body ${id}`,
       }),
       headers: {
-        'Content-type': 'application/json; charset=UTF-8',
+        'Accept': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
       },
     });
 
@@ -51,16 +55,16 @@ export default function HomePage({ data }: { data: Post[] }) {
 
   return (
     <div>
-      <div className="flex justify-between mb-5">
+      <div className="mb-5 flex justify-between">
         <h1>Isi Data dari API</h1>
         <div>
           <button
-            className="bg-emerald-300 hover:bg-white text-white hover:text-emerald-300 border-2 border-emerald-300 rounded-lg py-2 px-4 mx-1"
+            className="mx-1 rounded-lg border-2 border-emerald-300 bg-emerald-300 py-2 px-4 text-white hover:bg-white hover:text-emerald-300"
             onClick={() => router.refresh()}>
             Revalidate Data
           </button>
           <button
-            className="bg-emerald-300 hover:bg-white text-white hover:text-emerald-300 border-2 border-emerald-300 rounded-lg py-2 px-4 mx-1"
+            className="mx-1 rounded-lg border-2 border-emerald-300 bg-emerald-300 py-2 px-4 text-white hover:bg-white hover:text-emerald-300"
             onClick={() => handleCreate()}>
             Create Data
           </button>
@@ -68,14 +72,18 @@ export default function HomePage({ data }: { data: Post[] }) {
       </div>
       <div className="grid">
         {data.map((d) => (
-          <div key={d.id} className="flex justify-between items-center mb-1 px-2">
+          <div key={d.id} className="mb-1 flex items-center justify-between px-2">
             <div className="flex">
-              <p className="bg-orange-200 text-xl px-2 font-semibold rounded-md mr-2">{d.title}</p>
-              <p className="bg-orange-300 text-md px-2 rounded-md mr-2">{d.body}</p>
-              <p className="bg-orange-300 text-md px-2 rounded-md mr-2">{d.createdAt.toString()}</p>
-              <p className="bg-orange-300 text-md px-2 rounded-md mr-2">{d.updatedAt.toString()}</p>
+              <p className="mr-2 rounded-md bg-orange-200 px-2 text-xl font-semibold">{d.title}</p>
+              <p className="text-md mr-2 rounded-md bg-orange-300 px-2">{d.body}</p>
+              <p className="text-md mr-2 rounded-md bg-orange-300 px-2">
+                {format(new Date(d.createdAt), 'dd MMMM yyyy', { locale: id })}
+              </p>
+              <p className="text-md mr-2 rounded-md bg-orange-300 px-2">
+                {format(new Date(d.updatedAt), 'dd MMMM yyyy', { locale: id })}
+              </p>
             </div>
-            <button onClick={() => handleUpdate(d.id)} className="bg-indigo-600 text-white rounded-md px-2 py-1">
+            <button onClick={() => handleUpdate(d.id)} className="rounded-md bg-indigo-600 px-2 py-1 text-white">
               Update
             </button>
           </div>
