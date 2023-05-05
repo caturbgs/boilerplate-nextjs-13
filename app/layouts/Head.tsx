@@ -6,41 +6,29 @@ import { usePathname } from 'next/navigation';
 export default function LayoutHead() {
   const pathname = usePathname();
 
-  const menuHeader = [
-    {
-      name: 'Home',
-      route: '/',
-    },
-    {
-      name: 'Project',
-      route: '/project',
-    },
-    {
-      name: 'Experience',
-      route: '/experience',
-    },
-  ];
+  const linkClass = (path: string) =>
+    `ml-7 text-2xl font-semibold hover:text-blackfirst:ml-0 ${pathname === path ? 'text-black' : 'text-gray-600'} `;
 
   return (
     <header>
-      <div className="flex flex-1 items-center justify-between lg:container lg:max-w-screen-lg h-[80px] px-4 mx-auto">
+      <div className="mx-auto flex h-[80px] flex-1 items-center justify-between px-4 lg:container lg:max-w-screen-lg">
         <div className="flex">
-          {menuHeader.map((menu) => {
-            return (
-              <Link
-                href={menu.route}
-                className={`first:ml-0 ml-7 text-2xl font-semibold ${
-                  pathname == menu.route "text-black"k' "text-gray-600"0'
-                } hover:text-black`}
-                key={menu.route}>
-                {menu.name}
-              </Link>
-            );
-          })}
+          <Link href="/" className={linkClass('/')}>
+            Home
+          </Link>
+          <Link href="/project" className={linkClass('/project')}>
+            Project
+          </Link>
+          <Link href="/experience" className={linkClass('/experience')}>
+            Experience
+          </Link>
+          <Link href="/contact-us" className={linkClass('/contact-us')}>
+            Contact Us
+          </Link>
         </div>
         <div>
           <Link href="/contact-us">
-            <button className="bg-blue-600 hover:bg-white font-medium text-white hover:text-blue-600 border border-solid border-blue-600 transition ease-in-out duration-200 rounded-md px-4 py-1">
+            <button className="rounded-md border border-solid border-blue-600 bg-blue-600 px-4 py-1 font-medium text-white transition duration-200 ease-in-out hover:bg-white hover:text-blue-600">
               Contact Us!
             </button>
           </Link>

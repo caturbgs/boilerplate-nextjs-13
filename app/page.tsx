@@ -1,24 +1,20 @@
+import { PrismaClient } from '@prisma/client';
 import { Post } from '@types';
-import { getPosts } from '@utils/fetch/posts';
 import HomePage from './HomePage';
 
+const prisma = new PrismaClient();
+
+export const revalidate = 90; // revalidate every one and half minute
+
 async function getData(): Promise<Post[]> {
-  //* Static Site Generation (SSG)
-  // This request should be cached until manually invalidated.
-  // const res = await fetch(`https://jsonplaceholder.typicode.com/posts`, { cache: 'force-cache' });
-
-  //* Incremental Static Regeneration (ISR)
-  // This request should be cached with a lifetime of 10 seconds.
-  // const res = await fetch(`https://jsonplaceholder.typicode.com/posts`, { next: { revalidate: appConfig.revalidateTime } });
-
-  //* Server-side Rendering (SSR)
-  // This request should be refetched on every request.
-  // const res = await fetch(`https://jsonplaceholder.typicode.com/posts`, { cache: 'no-store' });
-
   // Example after moved on utils as helper functions.
-  const data = await getPosts();
+  const data = await prisma.post.findMany();
   return data;
 }
+
+export const metadata = {
+  title: 'Home',
+};
 
 export default async function RootPage() {
   // we can use with declare local functions first
