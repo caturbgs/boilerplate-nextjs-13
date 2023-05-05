@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 // create route handler for PUT /api/posts/:id using prisma
-export async function PUT(req: Request, {params}: {params: {id: string}}) {
+export async function PUT(req: Request, { params }: { params: { id: string } }) {
   const res: Prisma.postUpdateInput = await req.json();
   const id = params.id;
 

@@ -6,41 +6,25 @@ import { usePathname } from 'next/navigation';
 export default function LayoutHead() {
   const pathname = usePathname();
 
-  const menuHeader = [
-    {
-      name: 'Home',
-      route: '/',
-    },
-    {
-      name: 'Project',
-      route: '/project',
-    },
-    {
-      name: 'Experience',
-      route: '/experience',
-    },
-    {
-      name: 'Contact Us',
-      route: '/contact-us',
-    },
-  ];
+  const linkClass = (path: string) =>
+    `ml-7 text-2xl font-semibold hover:text-blackfirst:ml-0 ${pathname === path ? 'text-black' : 'text-gray-600'} `;
 
   return (
     <header>
       <div className="mx-auto flex h-[80px] flex-1 items-center justify-between px-4 lg:container lg:max-w-screen-lg">
         <div className="flex">
-          {menuHeader.map((menu) => {
-            return (
-              <Link
-                href={menu.route}
-                className={`ml-7 text-2xl font-semibold first:ml-0 ${
-                  pathname == menu.route ? 'text-black' : 'text-gray-600'
-                } hover:text-black`}
-                key={menu.route}>
-                {menu.name}
-              </Link>
-            );
-          })}
+          <Link href="/" className={linkClass('/')}>
+            Home
+          </Link>
+          <Link href="/project" className={linkClass('/project')}>
+            Project
+          </Link>
+          <Link href="/experience" className={linkClass('/experience')}>
+            Experience
+          </Link>
+          <Link href="/contact-us" className={linkClass('/contact-us')}>
+            Contact Us
+          </Link>
         </div>
         <div>
           <Link href="/contact-us">

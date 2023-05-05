@@ -25,7 +25,7 @@ export default function HomePage({ data }: { data: Post[] }) {
         },
       }),
       headers: {
-        'Accept': 'application/json; charset=utf-8',
+        Accept: 'application/json; charset=utf-8',
         'Content-Type': 'application/json',
       },
     });
@@ -34,7 +34,7 @@ export default function HomePage({ data }: { data: Post[] }) {
 
     router.refresh();
   };
-``
+
   const handleUpdate = async (id: string) => {
     const res = await fetch(`/posts/${id}`, {
       method: 'PUT',
@@ -43,7 +43,7 @@ export default function HomePage({ data }: { data: Post[] }) {
         body: `Update Body ${id}`,
       }),
       headers: {
-        'Accept': 'application/json; charset=utf-8',
+        Accept: 'application/json; charset=utf-8',
         'Content-Type': 'application/json',
       },
     });

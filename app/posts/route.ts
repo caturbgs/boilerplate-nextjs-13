@@ -16,7 +16,7 @@ export async function POST(req: Request) {
             name: 'John Doe',
             email: 'johndoe@gmail.com',
           },
-        }
+        },
       },
     });
 
@@ -24,6 +24,6 @@ export async function POST(req: Request) {
     // return new NextResponse(JSON.stringify({ message: "Success create post!" }), {status: 200, });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: 'Something went wrong!' }, {status: 500});
+    return NextResponse.json({ message: 'Something went wrong!' }, { status: 500 });
   }
 }
