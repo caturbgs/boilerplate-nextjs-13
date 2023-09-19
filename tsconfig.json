@@ -31,7 +31,19 @@
       ],
       "@config/*": [
         "config/*"
-      ]
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@repositories/*": [
+        "repositories/*"
+      ],
+      "@validations/*": [
+        "validations/*"
+      ],
+      "@actions/*": [
+        "actions/*"
+      ],
     },
     "plugins": [
       {
