@@ -3,5 +3,8 @@
     "eslint:recommended",
     "next"
   ],
-  "rules": {}
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "react/jsx-curly-brace-presence": ["warn"]
+  }
 }
