@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@components/ui/button';
 import { Post } from '@types';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
@@ -58,16 +59,16 @@ export default function HomePage({ data }: { data: Post[] }) {
       <div className="mb-5 flex justify-between">
         <h1>Isi Data dari API</h1>
         <div>
-          <button
+          <Button
             className="mx-1 rounded-lg border-2 border-emerald-300 bg-emerald-300 py-2 px-4 text-white hover:bg-white hover:text-emerald-300"
             onClick={() => router.refresh()}>
             Revalidate Data
-          </button>
-          <button
+          </Button>
+          <Button
             className="mx-1 rounded-lg border-2 border-emerald-300 bg-emerald-300 py-2 px-4 text-white hover:bg-white hover:text-emerald-300"
             onClick={() => handleCreate()}>
             Create Data
-          </button>
+          </Button>
         </div>
       </div>
       <div className="grid">

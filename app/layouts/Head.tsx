@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@components/ui/button';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -27,11 +28,11 @@ export default function LayoutHead() {
           </Link>
         </div>
         <div>
-          <Link href="/contact-us">
-            <button className="rounded-md border border-solid border-blue-600 bg-blue-600 px-4 py-1 font-medium text-white transition duration-200 ease-in-out hover:bg-white hover:text-blue-600">
-              Contact Us!
-            </button>
-          </Link>
+            <Button asChild className="rounded-md border border-solid border-blue-600 bg-blue-600 px-4 py-1 font-medium text-white transition duration-200 ease-in-out hover:bg-white hover:text-blue-600">
+              <Link href="/contact-us">
+                  Contact Us!
+              </Link>
+            </Button>
         </div>
       </div>
     </header>
